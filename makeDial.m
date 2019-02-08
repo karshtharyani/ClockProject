@@ -1,4 +1,11 @@
 function [dial] = makeDial(hFig, hAx, theme)
+    if(strcmp(theme, 'k'))
+        hFig.Color = 'w';
+        hAx.Color = 'w';
+    else
+        hFig.Color = 'k';
+        hAx.Color = 'k';
+    end
     % make a circular dial
     theta = 0:0.01:2*pi;
     thetaMarks = [0:pi/6:2*pi];

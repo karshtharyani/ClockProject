@@ -1,6 +1,6 @@
-function minuteHand = makeMinuteHand(hFig, hAx)
+function minuteHand = makeMinuteHand(hFig, hAx, theme)
     rMinute = 8;
     hold(hAx, 'on');
-    minuteHand = plot(hAx, [0, rMinute], [0, 0], 'k-', 'LineWidth', 2);
+    minuteHand = plot(hAx, [0, rMinute], [0, 0], [theme, '-'], 'LineWidth', 2);
     hold(hAx, 'off');
 end
