@@ -1,4 +1,4 @@
-function updateClock(~, ~, hFig, hAx, secondHand, hourHand, minuteHand)
+function updateClock(~, ~, hFig, hAx, secondHand, hourHand, minuteHand, alarmTime, alarmSound)
     % update second hand
     [newXSecond, newYSecond] = updateSecondHand();
     secondHand.XData = [0 newXSecond];
@@ -13,5 +13,11 @@ function updateClock(~, ~, hFig, hAx, secondHand, hourHand, minuteHand)
     [newXMinute, newYMinute] = updateMinuteHand();
     minuteHand.XData = [0 newXMinute];
     minuteHand.YData = [0 newYMinute];
+
+    currentTime = datetime;
+    if(currentTime.Hour == alarmTime{1} && currentTime.Minute == alarmTime{2})
+        disp('here');
+        play(alarmSound);
+    end
 
 end

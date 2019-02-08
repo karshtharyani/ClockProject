@@ -5,6 +5,8 @@
 
 %% reset the clock and timer
 resetClock();
+load gong;
+alarmSound = y;
 t = timer;
 t.ExecutionMode = 'fixedSpacing';
 
@@ -16,9 +18,11 @@ alarmTime = {0, 0};
 secondHand = makeSecondHand(hFig, hAx);
 hourHand = makeHourHand(hFig, hAx);
 minuteHand = makeMinuteHand(hFig, hAx);
+hAlarm{1}.Callback = 'alarmTime{1} = str2num(hAlarm{1}.String);';
+hAlarm{2}.Callback = 'alarmTime{2} = str2num(hAlarm{2}.String);';
 hToggle.Callback = {@toggleTheme, ...
     hFig, hAx, secondHand, minuteHand, hourHand, dial, dialText, dialCenter,...
-    dialTicks, hAlarm};
-t.TimerFcn = {@updateClock, hFig, hAx, secondHand, hourHand, minuteHand, alarmTime};
+    dialTicks};
+t.TimerFcn = {@updateClock, hFig, hAx, secondHand, hourHand, minuteHand, alarmTime, alarmSound};
 start(t);
-hAlarm{1}.Callback = 
+
