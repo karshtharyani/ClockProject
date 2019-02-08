@@ -11,7 +11,8 @@ t.ExecutionMode = 'fixedSpacing';
 %% make the dial and all other static graphic and their properties
 [hFig, hAx] = initializeGraphicHandles();
 
-dial = makeDial(hFig, hAx);
+defaultTheme = 'k'; %black on white
+dial = makeDial(hFig, hAx, defaultTheme);
 secondHand = makeSecondHand(hFig, hAx);
 hourHand = makeHourHand(hFig, hAx);
 minuteHand = makeMinuteHand(hFig, hAx);
