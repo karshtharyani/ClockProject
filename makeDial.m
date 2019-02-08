@@ -1,12 +1,6 @@
-function [dial] = makeDial(hFig, hAx, theme)
-    if(strcmp(theme, 'k'))
-        hFig.Color = 'w';
-        hAx.Color = 'w';
-    else
-        hFig.Color = 'k';
-        hAx.Color = 'k';
-    end
+function [dial, dialText, dialCenter, dialTicks] = makeDial(hFig, hAx)
     % make a circular dial
+    dialTicks = [];
     theta = 0:0.01:2*pi;
     thetaMarks = [0:pi/6:2*pi];
     r = 10;
@@ -20,17 +14,17 @@ function [dial] = makeDial(hFig, hAx, theme)
     rLegend = 8;
     xLegend = rLegend * cos(thetaLegend);
     yLegend = rLegend * sin(thetaLegend);
-    text(hAx, xLegend, yLegend, {'III', 'XII', 'IX', 'VI'}, ...
+    dialText = text(hAx, xLegend, yLegend, {'III', 'XII', 'IX', 'VI'}, ...
     'FontName', 'Courier New', 'FontWeight', 'bold', 'FontSize', 11, ...
     'horizontalAlignment', 'center');
     hold(hAx, 'on');
-    plot(hAx, 0, 0, 'o', 'MarkerFaceColor', theme);
+    dialCenter = plot(hAx, 0, 0, 'o', 'MarkerFaceColor', 'k');
     xStartMark = 0.9 * r * cos(thetaMarks);
     yStartMark = 0.9 * r * sin(thetaMarks);
     xEndMark = r * cos(thetaMarks);
     yEndMark = r * sin(thetaMarks);
     for i = 1:length(xStartMark)
-        plot(hAx, [xStartMark(i), xEndMark(i)], [yStartMark(i), yEndMark(i)],[theme, '-'])
+        dialTicks = [dialTicks, plot(hAx, [xStartMark(i), xEndMark(i)], [yStartMark(i), yEndMark(i)],'k-')];
     end
     hold(hAx, 'off');
 end
