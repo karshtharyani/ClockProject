@@ -6,7 +6,7 @@ function [dial, dialText, dialCenter, dialTicks] = makeDial(hFig, hAx)
     r = 10;
     x = r * cos(theta);
     y = r * sin(theta);
-    dial = plot(hAx, x, y, [theme, '-'], 'LineWidth', 2);
+    dial = plot(hAx, x, y, 'k-', 'LineWidth', 2);
     axis(hAx, 'equal');
     box(hAx, 'off');
     hAx.Visible = 'off';
