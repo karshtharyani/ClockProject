@@ -9,12 +9,13 @@ t = timer;
 t.ExecutionMode = 'fixedSpacing';
 
 %% make the dial and all other static graphic and their properties
-[hFig, hAx] = initializeGraphicHandles();
+[hFig, hAx, hToggle] = initializeGraphicHandles();
 
-dial = makeDial(hFig, hAx);
+[dial, dialText, dialTicks] = makeDial(hFig, hAx);
 secondHand = makeSecondHand(hFig, hAx);
 hourHand = makeHourHand(hFig, hAx);
 minuteHand = makeMinuteHand(hFig, hAx);
+hToggle.ButtonDownFcn = 'datetime';
 
 t.TimerFcn = {@updateClock, hFig, hAx, secondHand, hourHand, minuteHand};
 start(t);
